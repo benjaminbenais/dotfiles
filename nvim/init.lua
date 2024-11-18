@@ -4,6 +4,11 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.o.tabstop = 2 -- A TAB character looks like 4 spaces
+vim.o.expandtab = true -- Pressing the TAB key will insert spaces instead of a TAB character
+vim.o.softtabstop = 2 -- Number of spaces inserted instead of a TAB character
+vim.o.shiftwidth = 2 -- Number of spaces inserted when indenting
+
 vim.g.have_nerd_font = false
 
 -- Don't wrap text
@@ -682,30 +687,19 @@ require('lazy').setup({
   },
 
   {
-    'cocopon/iceberg.vim',
-    lazy = false,
-    priority = 1000,
-    init = function()
-      vim.cmd.colorscheme 'iceberg'
-      -- vim.cmd.colorscheme("lackluster-hack") -- my favorite
-      -- vim.cmd.colorscheme("lackluster-mint")
+    'rose-pine/neovim',
+    name = 'rose-pine',
+
+    config = function()
+      require('rose-pine').setup {
+        styles = {
+          transparency = true,
+        },
+      }
+
+      vim.cmd.colorscheme 'rose-pine'
     end,
   },
-
-  -- {
-  --   'rose-pine/neovim',
-  --   name = 'rose-pine',
-  --
-  --   config = function()
-  --     require('rose-pine').setup {
-  --       styles = {
-  --         transparency = true,
-  --       },
-  --     }
-  --
-  --     vim.cmd.colorscheme 'rose-pine'
-  --   end,
-  -- },
 
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
